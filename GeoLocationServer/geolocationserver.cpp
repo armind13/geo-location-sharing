@@ -51,7 +51,8 @@ void GeoLocationServer::createNewClient(QTcpSocket* clientSocket)
 
 QString GeoLocationServer::generateUniqueKey()
 {
-    return QUuid::createUuid().toString();
+    auto str = QUuid::createUuid().toString();
+    return str.split(QChar('-')).first();
 }
 
 void GeoLocationServer::sendConnectAnswer(const QString& token) const
