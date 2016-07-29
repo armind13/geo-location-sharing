@@ -43,6 +43,7 @@ Page {
                     var coord = positionSource.position.coordinate;
                     console.log("Coordinate:", coord.longitude, coord.latitude);
                     tcpClient.updateLocation(coord.latitude, coord.longitude)
+                    mePositionMarker.center = QtPositioning.coordinate(coord.latitude, coord.longitude)
                 }
             }
             Label {
@@ -59,7 +60,7 @@ Page {
                 }
                 Label {
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Ширина: " + positionSource.position.
+                    text: "Широта: " + positionSource.position.
                     coordinate.latitude
                 }
                 Label {
@@ -77,11 +78,13 @@ Page {
                 target: tcpClient
                 onLocationUpdated: {
                     console.log("onLocationUpdated")
-                    responsesDebugField.text = "Принято: "
-                            + "longitude = " + longitude
-                            + "latitude = " + latitude
-                            + "by token = " + userToken
-                    map.center = QtPositioning.coordinate(latitude, longitude)
+                    responsesDebugField.text = "Принято:"
+                            + " l = " + latitude
+                            + " b = " + longitude
+                            + " by token = " + userToken
+                    var coords = QtPositioning.coordinate(latitude, longitude)
+                    map.center = coords
+                    friendPositionMarker.center = coords
                 }
             }
 
@@ -102,12 +105,34 @@ Page {
                     id: map
                     anchors.fill: parent
                     plugin: osmPlugin
-                    zoomLevel: Map.maximumZoomLevel
+                    zoomLevel: 13
                     gesture.enabled: true
                     center {
                         id: coords
                         latitude: 55.45
                         longitude: 48.44
+                    }
+
+                    MapCircle {
+                        id: mePositionMarker
+                        center {
+                            latitude: 55.45
+                            longitude: 48.44
+                        }
+                        radius: 2000.0
+                        color: 'red'
+                        border.width: 3
+                    }
+
+                    MapCircle {
+                        id: friendPositionMarker
+                        center {
+                            latitude: 55.45
+                            longitude: 48.44
+                        }
+                        radius: 2000.0
+                        color: 'blue'
+                        border.width: 3
                     }
                 }
             }
