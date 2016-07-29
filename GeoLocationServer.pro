@@ -13,4 +13,5 @@ SOURCES += main.cpp \
     GeoLocationServer.cpp
 
 HEADERS += \
-    GeoLocationServer.h
+    GeoLocationServer.h \
+    StringConstants.h
