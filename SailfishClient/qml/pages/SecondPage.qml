@@ -77,6 +77,8 @@ Page {
 
             Label {
                 text: "Debug only:"
+                x: Theme.horizontalPageMargin
+                color: "yellow"
             }
 
             TextField {
@@ -85,6 +87,12 @@ Page {
                 id: latitudeField
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
+                validator: DoubleValidator {
+                    bottom: 0
+                    top: 90
+                    decimals: 2
+                }
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
             }
             TextField {
                 label: "longitude"
@@ -92,6 +100,12 @@ Page {
                 id: longitudeField
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
+                validator: DoubleValidator {
+                    bottom: -180
+                    top: 180
+                    decimals: 2
+                }
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
             }
 
             Button {
