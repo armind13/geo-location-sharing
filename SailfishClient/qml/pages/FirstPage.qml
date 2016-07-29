@@ -64,6 +64,7 @@ Page {
                 }
                 Label {
                     id: responsesDebugField
+                    font.pixelSize: Theme.fontSizeExtraSmall
                 }
             }
 
@@ -71,14 +72,34 @@ Page {
                 target: tcpClient
                 onLocationUpdated: {
                     console.log("onLocationUpdated")
-                    inviteField.text = "Принято: "
+                    responsesDebugField.text = "Принято: "
                             + "longitude = " + longitude
                             + "latitude = " + latitude
-                            + "by token = " + token
+                            + "by token = " + userToken
                 }
             }
-        }
-    }
+
+//            Plugin {
+//                id: osmPlugin
+//                allowExperimental: true
+//                preferred: ["osm"]
+//                required.mapping: Plugin.AnyMappingFeatures
+//                required.geocoding: Plugin.AnyGeocodingFeatures
+//            }
+//            Rectangle {
+//                height: applicationWindow.height
+//                width: applicationWindow.width
+//                Map {
+//                    id: map
+//                    anchors.fill: parent
+//                    plugin: osmPlugin
+//                    zoomLevel: Map.maximumZoomLevel
+//                    gesture.enabled: true
+//                    center: positionSource.position.coordinate
+//                }
+//            }
+        } // Column
+    } // SilicaFlickable
 }
 
 
