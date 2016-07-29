@@ -39,6 +39,11 @@ Page {
                 id: positionSource
                 active: true
                 nmeaSource: "/usr/share/device-api-starting-point/nmeafiles/gps.log"
+                onPositionChanged: {
+                    var coord = positionSource.position.coordinate;
+                    console.log("Coordinate:", coord.longitude, coord.latitude);
+                    tcpClient.updateLocation(coord.latitude, coord.longitude)
+                }
             }
             Label {
                 text: "Debug only:"
@@ -90,6 +95,9 @@ Page {
             Rectangle {
                 height: applicationWindow.height
                 width: applicationWindow.width
+
+                property MapCircle circle
+
                 Map {
                     id: map
                     anchors.fill: parent
@@ -101,7 +109,6 @@ Page {
                         latitude: 55.45
                         longitude: 48.44
                     }
-                //    center: positionSource.position.coordinate
                 }
             }
         } // Column
