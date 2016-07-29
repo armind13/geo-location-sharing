@@ -102,6 +102,7 @@ void TcpClient::joinByInviteKey(QString key)
     QJsonObject request;
     request[typeKeyword] = joinByInviteKeyKeyword;
     request[tokenKeyword] = token;
+    request[inviteKeyKeyword] = inviteKey;
     QJsonDocument document(request);
     socket->write(document.toBinaryData());
     socket->flush();

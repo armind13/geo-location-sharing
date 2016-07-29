@@ -74,6 +74,17 @@ Page {
                     tcpClient.getInviteKey()
                 }
             }
+            Button {
+                id: button_join_with_invite_key
+                text: "Join"
+                anchors.horizontalCenter: parent.horizontalCenter
+                enabled: inviteField.text.length > 0
+                onClicked:
+                {
+                    console.log("join by invite key clicked")
+                    tcpClient.joinByInviteKey(inviteField.text);
+                }
+            }
 
             Label {
                 text: "Debug only:"
