@@ -50,6 +50,10 @@ Page {
                         button_sendTestLocation.enabled = false
                     }
                 }
+                onInviteKeyUpdated: {
+                    console.log("onInviteKeyUpdated")
+                    inviteField.text = key
+                }
             }
 
             TextField {

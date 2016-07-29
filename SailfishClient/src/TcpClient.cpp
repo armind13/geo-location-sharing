@@ -84,6 +84,7 @@ void TcpClient::getInviteKey()
     {
         QJsonObject request;
         request[typeKeyword] = getInviteKeyRequestKeyword;
+        request[tokenKeyword] = token;
         QJsonDocument document(request);
         socket->write(document.toBinaryData());
         socket->flush();
