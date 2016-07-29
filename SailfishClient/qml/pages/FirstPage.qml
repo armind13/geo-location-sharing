@@ -76,28 +76,34 @@ Page {
                             + "longitude = " + longitude
                             + "latitude = " + latitude
                             + "by token = " + userToken
+                    map.center = QtPositioning.coordinate(latitude, longitude)
                 }
             }
 
-//            Plugin {
-//                id: osmPlugin
-//                allowExperimental: true
-//                preferred: ["osm"]
-//                required.mapping: Plugin.AnyMappingFeatures
-//                required.geocoding: Plugin.AnyGeocodingFeatures
-//            }
-//            Rectangle {
-//                height: applicationWindow.height
-//                width: applicationWindow.width
-//                Map {
-//                    id: map
-//                    anchors.fill: parent
-//                    plugin: osmPlugin
-//                    zoomLevel: Map.maximumZoomLevel
-//                    gesture.enabled: true
-//                    center: positionSource.position.coordinate
-//                }
-//            }
+            Plugin {
+                id: osmPlugin
+                allowExperimental: true
+                preferred: ["osm"]
+                required.mapping: Plugin.AnyMappingFeatures
+                required.geocoding: Plugin.AnyGeocodingFeatures
+            }
+            Rectangle {
+                height: applicationWindow.height
+                width: applicationWindow.width
+                Map {
+                    id: map
+                    anchors.fill: parent
+                    plugin: osmPlugin
+                    zoomLevel: Map.maximumZoomLevel
+                    gesture.enabled: true
+                    center {
+                        id: coords
+                        latitude: 55.45
+                        longitude: 48.44
+                    }
+                //    center: positionSource.position.coordinate
+                }
+            }
         } // Column
     } // SilicaFlickable
 }
