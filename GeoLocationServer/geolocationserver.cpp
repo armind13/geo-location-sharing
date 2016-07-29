@@ -179,7 +179,7 @@ void GeoLocationServer::sendNewPositionToClients(const QJsonObject& jsonObj)
     for (auto currentToken : destTokens)
     {
         auto socket = clients.key(currentToken, nullptr);
-        if (nullptr != socket)
+        if (nullptr != socket && currentToken != srcToken)
         {
             socket->write(document.toBinaryData());
             socket->flush();
