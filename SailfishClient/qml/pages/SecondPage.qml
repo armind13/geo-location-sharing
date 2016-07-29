@@ -6,6 +6,9 @@ Page {
     anchors.fill: parent
 
     SilicaFlickable {
+        anchors.fill: parent
+        contentHeight: applicationWindow.height * 1.5
+
         Column {
             id: column
             width: page.width
@@ -85,7 +88,6 @@ Page {
                     tcpClient.joinByInviteKey(inviteField.text);
                 }
             }
-
             Label {
                 text: "Debug only:"
                 x: Theme.horizontalPageMargin
