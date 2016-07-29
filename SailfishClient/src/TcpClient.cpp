@@ -145,6 +145,17 @@ void TcpClient::onReadyRead()
         }
         return;
     }
+
+    // ответ (оповещение) на изменение позиции пользователя
+    if (typeValueString == newPositionAnswerKeyword)
+    {
+        const QString _token = jsonObject[tokenKeyword].toString();
+        const double latitude = jsonObject[latitudeKeyword].toDouble();
+        const double longitude = jsonObject[longitudeKeyword].toDouble();
+        emit locationUpdated(_token, latitude, longitude);
+    }
+
+    // todo: обработать ответ от join'а
 }
 
 void TcpClient::onConnected()

@@ -20,7 +20,7 @@ signals:
     /** @brief изменилось состояние подключения */
     void connectionStateChanged();
     /** @brief обновлены данные о геоположении участников */
-    void locationUpdated();
+    void locationUpdated(QString userToken, double latitude, double longitude);
     /** @brief обнолвён ключ приглашения */
     void inviteKeyUpdated(QString key);
 

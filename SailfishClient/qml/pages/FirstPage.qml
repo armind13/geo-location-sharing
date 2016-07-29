@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtPositioning 5.2
+import QtLocation 5.0
 
 Page {
     id: page
@@ -60,6 +61,20 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     text: "Долгота: " + positionSource.position.
                     coordinate.longitude
+                }
+                Label {
+                    id: responsesDebugField
+                }
+            }
+
+            Connections {
+                target: tcpClient
+                onLocationUpdated: {
+                    console.log("onLocationUpdated")
+                    inviteField.text = "Принято: "
+                            + "longitude = " + longitude
+                            + "latitude = " + latitude
+                            + "by token = " + token
                 }
             }
         }
