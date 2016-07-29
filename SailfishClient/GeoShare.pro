@@ -14,6 +14,11 @@ TARGET = GeoShare
 
 CONFIG += sailfishapp
 
+nmeafiles.files = nmeafiles/*
+nmeafiles.path = /usr/share/$${TARGET}/nmeafiles
+INSTALLS += nmeafiles
+OTHER_FILES += nmeafiles/*.log
+
 SOURCES += src/GeoShare.cpp \
     src/TcpClient.cpp
 
